@@ -10,7 +10,6 @@
 <head>
 <meta charset="<?php bloginfo( 'charset' ); ?>">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title><?php wp_title( '|', true, 'right' ); ?></title>
 <link rel="profile" href="http://gmpg.org/xfn/11">
 <link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>">
 
@@ -19,7 +18,18 @@
 <link rel="stylesheet" href="<?php echo esc_url( get_template_directory_uri() ); ?>/css/ie.css" type="text/css">
 <![endif]-->
 
-<?php wp_head(); ?>
+<?php
+
+if ( ! function_exists( '_wp_render_title_tag' ) ) :
+    function zerif_old_render_title() {
+?>
+<title><?php wp_title( '-', true, 'right' ); ?></title>
+<?php
+    }
+    add_action( 'wp_head', 'zerif_old_render_title' );
+endif;
+
+wp_head(); ?>
 
 </head>
 
@@ -49,6 +59,14 @@
 
 	endif; ?>
 
+
+<div id="mobilebgfix">
+	<div class="mobile-bg-fix-img-wrap">
+		<div class="mobile-bg-fix-img"></div>
+	</div>
+	<div class="mobile-bg-fix-whole-site">
+
+
 <header id="home" class="header">
 
 	<div id="main-nav" class="navbar navbar-inverse bs-docs-nav" role="banner">
@@ -77,7 +95,7 @@
 
 						echo '<a href="'.esc_url( home_url( '/' ) ).'" class="navbar-brand">';
 
-							echo '<img src="'.$zerif_logo.'" alt="'.get_bloginfo('title').'">';
+							echo '<img src="'.esc_url( $zerif_logo ).'" alt="'.esc_attr( get_bloginfo('title') ).'">';
 
 						echo '</a>';
 
@@ -87,11 +105,11 @@
 						
 							if( file_exists(get_stylesheet_directory()."/images/logo.png")):
 							
-								echo '<img src="'.get_stylesheet_directory_uri().'/images/logo.png" alt="'.get_bloginfo('title').'">';
+								echo '<img src="'.get_stylesheet_directory_uri().'/images/logo.png" alt="'.esc_attr( get_bloginfo('title') ).'">';
 							
 							else:
 								
-								echo '<img src="'.get_template_directory_uri().'/images/logo.png" alt="'.get_bloginfo('title').'">';
+								echo '<img src="'.get_template_directory_uri().'/images/logo.png" alt="'.esc_attr( get_bloginfo('title') ).'">';
 								
 							endif;
 

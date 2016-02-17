@@ -4,12 +4,12 @@ Theme URI: http://themeisle.com/themes/zerif-lite/
 Author: ThemeIsle
 Author URI: http://themeisle.com
 Description: Zerif LITE is a free one page Wordpress theme. It's perfect for web agency business,corporate business,personal and parallax business portfolio, photography sites and freelancer.Is built on BootStrap with parallax support, is responsive, clean, modern, flat and minimal. Zerif Lite is ecommerce (WooCommerce) Compatible, WPML, RTL, Retina-Ready, SEO Friendly and with parallax, full screen image is one of the best business themes.
-Version: 1.8.2.5
+Version: 1.8.3.5
 License: GNU General Public License version 3
 License URI: license.txt
 Text Domain: zerif-lite
 Domain Path: /languages/
-Tags: black, gray, red, white, one-column, two-columns, right-sidebar,fixed-layout,light,front-page-post-form,full-width-template,rtl-language-support,sticky-post,theme-options,responsive-layout, custom-background, custom-menu, editor-style, featured-images, threaded-comments, translation-ready, photoblogging, accessibility-ready
+Tags: black, gray, red, white, one-column, two-columns, right-sidebar,fixed-layout,light,front-page-post-form,full-width-template,rtl-language-support,sticky-post,theme-options,responsive-layout, custom-background, custom-menu, editor-style, featured-images, threaded-comments, translation-ready, photoblogging
 */
 
 
@@ -294,7 +294,7 @@ h6 {
 	margin-top: 45px;
 }
 .button {
-	display: inline-block !important;
+	display: inline-block;
 	text-align: center;
 	text-transform: uppercase;
 	padding: 10px 35px 10px 35px;
@@ -748,7 +748,15 @@ a:active {
 .navbar-collapse{
 	overflow: visible !important;
 }
-
+.navbar-inverse li.menu-item-open-left:hover > ul.sub-menu, 
+.navbar-inverse li.menu-item-open-left.link-focus > ul.sub-menu {
+	right: 0;
+}
+.navbar-inverse li.menu-item-open-left li:hover > ul.sub-menu, 
+.navbar-inverse ul ul li.link-focus > ul.sub-menu {
+	right: 100%;
+	left: auto;
+}
 .site-main .comment-navigation,
 .site-main .paging-navigation,
 .site-main .post-navigation {
@@ -911,7 +919,7 @@ a:active {
 	padding: 0;
 	margin: 0;
 	background: url(images/search_icon.png) no-repeat center center;
-	text-indent: -99999999999px;
+	text-indent: -9999999px;
 }
 .widget_search label{
 	margin-bottom: 5px;
@@ -1043,6 +1051,10 @@ a:active {
 .entry-meta{
 	margin-top: 10px;
 }
+.content-area .entry-header {
+	overflow: hidden;
+}
+
  /*---------------------------------------
  **   10.2 Asides                   -----
 -----------------------------------------*/
@@ -1616,7 +1628,7 @@ li.current>a:before {
 	bottom: 0px;
 	left: 12.5%;
 }
-ul.nav > li.current_page_item > a:before {
+ul.nav > li.current_page_item > a:before, ul.nav > li.current-menu-item > a:before {
 	position: absolute;
 	margin: auto;
 	z-index: 1;
@@ -2090,6 +2102,15 @@ width: -webkit-calc(100% / 4);
 	color: #FFF;
 	background: #cb4332;
 }
+.pirate_forms_wrap label {
+	width: 100%;
+	float: left;
+	height: 1px;
+}
+
+.zerif_hidden_if_not_customizer {
+	display: none !important;
+}
 
 /* media queries:  change number of items per row */
 @media screen and (max-width: 1190px) {
@@ -2155,12 +2176,11 @@ width: -webkit-calc(100% / 4);
 	border-radius: 5px;
 }
 /*---------------------------------------
- **   Section: Abot us;              -----
+ **   Section: About us;              -----
 -----------------------------------------*/
 .about-us {
 	background: #272727;
 	color: #FFF;
-	padding-bottom: 100px;
 }
 .about-us .row {
 	margin-left: -15px;
@@ -2184,6 +2204,10 @@ width: -webkit-calc(100% / 4);
 }
 .about-us .column {
 	margin-bottom: 78px;
+}
+.about-us .col-md-12.zerif-rtl-big-title .big-intro,
+.about-us .col-md-12.zerif_about_us_center p {
+	text-align: center;
 }
 /*--SKILLS --*/
 .skills {
@@ -2244,7 +2268,9 @@ width: -webkit-calc(100% / 4);
 }
 .client-list {
 	padding-top: 5px;
-	margin-bottom: -17px;
+	float: left;
+    width: 100%;
+    margin-bottom: 78px;
 }
 .client-list ul{
 	margin: 0;
@@ -2737,17 +2763,17 @@ width: -webkit-calc(100% / 4);
 	color: #FFF;
 }
 #client-feedbacks .feedback-box {
-	width: 30%;
-	float:left;
-	background: #FFFFFF;
-	padding: 25px;
-	margin: 13px;
-	text-align: left;
-	border-radius: 4px;
-	-webkit-box-shadow: none;
-	box-shadow: none;
-	display: block;
-	z-index: 5;
+    width: 30%;
+    background: #FFFFFF;
+    padding: 25px;
+    margin: 13px;
+    text-align: left;
+    border-radius: 4px;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    display: inline-block;
+    z-index: 5;
+    vertical-align: top;
 }
 .feedback-box .message {
 	font-size: 15px;
@@ -2954,6 +2980,52 @@ width: -webkit-calc(100% / 4);
 	margin-bottom: 0;
 	color: #939393;
 }
+.footer-widget-wrap > .container {
+	text-align: center;
+}
+.footer-widget {
+	float: none;
+	display: inline-block;
+	vertical-align: top;
+}
+.footer-widget ul {
+	margin-left: 0;
+	padding-left: 0;
+}
+.footer-widget li {
+	list-style: none;
+	margin-left: 0;
+}
+.footer-widget-wrap {
+	background: rgba(255,255,255,0.05);
+}
+.footer-widget-wrap .widget .widget-title {
+	color: #FFF;	
+}
+.footer-widget-wrap .widget li a {
+	color: #CCC;
+}
+.footer-widget-wrap .widget li a:hover {
+	color: #FFF;
+}
+.footer-widget-wrap .widget {
+	color: #CCC;
+	padding-bottom: 30px;
+}
+.footer-widget-wrap .widget_calendar tbody td {
+    background-color: rgba(249, 249, 249, 0.75);
+}
+.footer-widget-wrap .tagcloud a {
+	background: none;
+	padding: 2px 5px;
+	color: #CCC;
+}
+.footer-widget-wrap .tagcloud a:hover {
+	color: #FFF;
+}
+.footer-widget-wrap .widget #wp-calendar {
+	color: #333;
+}
 /*---------------------------------------
  **   Single page           -----
 -----------------------------------------*/
@@ -3100,6 +3172,17 @@ article .posted-on a:hover{
 	display: none;
 	content: "";
 }
+.entry-title:after {
+	position: absolute;
+	margin: auto;
+	z-index: 1;
+	content: "";
+	width: 10%;
+	height: 2px;
+	background: #e96656;
+	bottom: -9px;
+	left: 0;
+}
 .listpost-content-wrap .entry-title a:after {
 	position: absolute;
 	margin: auto;
@@ -3111,6 +3194,7 @@ article .posted-on a:hover{
 	bottom: -9px;
 	left: 0;
 	width: 50px;
+	display: none;
 }
 .post .entry-footer {
 }
@@ -3333,7 +3417,6 @@ article .posted-on a:hover{
 .woocommerce-page .products .product > a:first-child {
 	position: relative;
 	text-align: center;
-/*	min-height: 385px; */
 	display: block;
 }
 .woocommerce-page .products a.button {
@@ -4364,6 +4447,9 @@ article .posted-on a:hover{
 	background: rgb(233, 102, 86);
 	color: #FFF;
 }
+.woocommerce div.product form.cart label {
+	color: #404040;
+}
 
 @media (max-width: 1200px) {
 	
@@ -5261,6 +5347,335 @@ li.bbp-body div.hentry {
 
 /* [end] bbpress */
 
+
+/* Easy Digital Downloads style [version 2.4.9] */
+.edd_download{
+	float:left;
+	width: 33%; 
+}
+.edd_download:nth-child(4n+1){
+	clear:both;
+}
+.edd_download_excerpt p{
+	text-align:justify;
+}
+.edd-submit.button.red span,
+.edd-submit.button.blue span,
+.edd-submit.button.green span,
+.edd-submit.button.orange span,
+.edd-submit.button.dark-gray span {
+	color: #FFF;
+}
+
+#edd-purchase-button, 
+.edd-submit, 
+input[type=submit].edd-submit {
+	border: none;
+}
+
+#edd_checkout_cart td,
+#edd_checkout_cart thead,
+#edd_checkout_cart th.edd_cart_total, 
+#edd_checkout_cart th:last-child,
+#edd_checkout_cart .edd_checkout_cart_item_title {
+	font-weight: 400;
+	color: #666666;
+	font-size: 14px;
+	line-height: 18px;
+	border: none;
+}
+
+#edd_checkout_cart a,
+.edd_discount_link a,
+.edd-lost-password a {
+	color: #f73f2e;
+}
+
+#edd_login_form input[type="submit"] {
+	margin-left: 0;
+}
+
+#edd_checkout_form_wrap select.edd-select {
+    display: block;
+    width: 70%;
+}
+
+.edd-cart-added-alert {
+    color: #D9534F;
+    width: 100%;
+}
+
+.edd_errors.edd-alert.edd-alert-error,
+.edd-alert-error {
+	background-color: #E86A6A;
+    color: #FFF;
+    border: none;
+    border-bottom: 3px solid #C84E54;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    border: none;
+}
+
+.edd-alert-error,
+p.edd-alert-error,
+.edd-alert-error a {
+	color: #FFF;
+}
+
+.edd-alert-error a:hover {
+	text-decoration: underline;
+}
+
+#edd_checkout_form_wrap fieldset p:last-child {
+	color: rgba(255,255,255,0.8);
+}
+
+.edd_download_inner {
+    background: #ffffff;
+    margin: 0 15px;
+    padding: 15px;
+    transition: all ease 0.55s;
+    list-style: none;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.edd_download_inner:hover {
+    border-bottom-color: #008ed6;
+}
+
+.edd_download_title a,
+.edd_download_title {
+    font-size: 1em;
+    color: #404040;
+    font-weight: bold;
+    line-height: 24px;
+}
+
+.edd_download_title{
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+#edd_checkout_form_wrap legend,
+#edd_login_form legend,
+.edd_form legend { 
+	border-bottom: 0;
+}
+
+#edd_profile_billing_address_wrap input,
+#edd_profile_billing_address_wrap select {
+    margin-bottom: 10px;
+}
+
+#edd_new_user_pass1,
+#edd_profile_editor_form select,
+#edd_profile_editor_form input[type="text"],
+#edd_profile_editor_form input[type="text"], 
+#edd_profile_editor_form input[type="email"], 
+#edd_profile_editor_form input[type="url"], 
+#edd_profile_editor_form input[type="password"], 
+#edd_profile_editor_form input[type="search"], 
+#edd_profile_editor_form textarea {
+	margin-bottom: 10px;
+	padding: 12px;
+    color: #555;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 3px;
+    width: 221px;
+}
+
+#edd_profile_editor_form input[type="submit"] {
+	margin-left: 0;
+}
+
+#edd_profile_billing_address_wrap legend {
+	margin-top: 50px;
+}
+
+#edd_login_form legend {
+	margin-top: 50px;
+}
+
+#edd_address_country,
+#edd_display_name {
+	width: 192px;
+}
+
+#edd_user_history,
+#edd_checkout_cart,
+#edd_checkout_form_wrap fieldset,
+#edd_discounts_list {
+    border: 1px solid rgba(0,0,0,.1);
+    margin: 0 -1px 24px 0;
+    text-align: left;
+    width: 100%;
+    border-collapse: separate;
+    border-radius: 5px;
+}
+
+#edd_user_history th,
+#edd_checkout_cart .edd_cart_header_row th {
+	background: transparent;
+	border: none;
+	padding: 9px 12px;
+}
+
+#edd_user_history td,
+#edd_checkout_cart td {
+    border-top: 1px solid rgba(0,0,0,.1);
+    padding: 6px 12px;
+    border-bottom: none;
+}
+
+.edd_cart_footer_row,
+#edd_checkout_cart th.edd_cart_total, 
+#edd_checkout_cart tfoot th:last-child {
+    border-top: 1px solid rgba(0,0,0,.1);
+}
+
+#edd_checkout_cart .edd_checkout_cart_item_title,
+#edd_checkout_cart td  {
+	font-size: 16px;
+	line-height: 22px;
+}
+
+#edd_checkout_cart td {
+    border-left: none;
+    border-right: none;
+}
+
+#edd_discounts_list .edd_discount {
+    border-top: 1px solid rgba(0,0,0,.1);
+    padding: 6px 12px;
+    border-bottom: none;
+    list-style: none;
+}
+
+#edd_discounts_list .edd_discount:nth-child(1) {
+	border-top: none;
+}
+
+#edd_checkout_form_wrap input[type=email],
+#edd_checkout_form_wrap input[type=text] {
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+	width: 100%;
+    padding: 12px;
+}
+
+#edd_profile_editor_form {
+}
+
+#edd_profile_editor_form legend {
+    margin-top: 30px;
+    margin-bottom: 20px;
+    display: block;
+    font-size: 120%;
+    line-height: 1;
+    font-weight: 700;
+    width: 100%;
+    color: #333;
+}
+
+.edd_price_options.edd_multi_mode ul {
+	border: 1px solid rgba(0,0,0,.1);
+	margin: 0 -1px 24px 0;
+	text-align: left;
+	width: 100%;
+	border-collapse: separate;
+	border-radius: 5px;
+}
+
+.edd_price_options.edd_multi_mode ul li {
+	border-top: 1px solid rgba(0,0,0,.1);
+    padding: 6px 12px;
+}
+
+.edd_price_options.edd_multi_mode ul li:nth-child(1) {
+	border-top: none;
+}
+
+.edd-image-wrap {
+	float: right;
+	width: 100%;
+	max-width: 50%;
+	padding: 0 0 15px 15px;
+}
+
+.edd-image-wrap img {
+    width: 100%;
+    height: auto;
+}
+
+/* WP MegaMenu */
+.wr-megamenu-container .preview-text,
+.wr-megamenu-container .preview-text p {
+    font-size: 14px;
+    color: #808080;
+    font-weight: normal;
+}
+.wr-megamenu-container .block-sub-menu a {
+	color: #808080;
+	padding: 5px;
+}
+.wr-element-submenu .submenu-items a {
+    padding: 6px 5px 6px 20px !important;
+}
+.wr-megamenu-container {
+	margin-top: 12px;
+}
+.it-responsive-mega {
+	display: none !important;
+}
+.jsn-bootstrap3 .glyphicon {
+	font-size: 10px;
+	margin-right: 2px;
+}
+.wr-element-container {
+	padding: 5px 0;
+}
+.jsn-bootstrap3 .glyphicon.glyphicon-chevron-right {
+	display: none !important;
+}
+.wr-element-container ul.sub-menu li a > i, 
+.wr-element-container ul.submenu-items li a > i {
+	margin-right: 7px;
+}
+@media only screen and (max-width: 783px) {
+	.wr-mega-menu .wr-menu-down {
+	    margin: -43px 5px 0 0 !important;
+	}
+}
+
+
+
+@media (max-width: 992px) {
+	.edd_download a.edd-add-to-cart.button.red.edd-submit.edd-has-js {
+		color: #FFF;
+		padding: 10px;
+		font-size: 12px;
+  	}
+  	.edd_download a.edd-add-to-cart.button.red.edd-submit.edd-has-js span {
+  		font-size: 12px;
+  	}
+	.zerif_about_us_center p,
+	.about-us .col-md-6.zerif_about_us_center.text_and_skills p {
+		text-align: center;
+	}
+}
+
+@media (max-width: 768px) {
+	.edd_download {
+		width: 100% !important;
+	}
+}
+
+
+/* [end] Easy Digital Downloads */
+
+
 body.home.page {
 	background-image:none !important;
 }
@@ -5277,6 +5692,36 @@ body.custom-background {
 .dropdownmenu {
 	display: none;
 }
+
+/* mobile background fix */
+.mobile-bg-fix-wrap {
+	width: 100%;
+	overflow: hidden;
+}
+
+.mobile-bg-fix-wrap .mobile-bg-fix-img-wrap {
+	width: 100%;
+	height: 100%;
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 0;
+}
+
+.mobile-bg-fix-wrap .mobile-bg-fix-img {
+	position: absolute;
+	width: 100%;
+	height: 125%;
+	left: 0;
+	top: 0;
+	background-size: cover;
+}
+
+.mobile-bg-fix-wrap .mobile-bg-fix-whole-site {
+	position: relative;
+	z-index: 1;
+}
+
 
 /*---------------------------------------
  **   Responsive            -----
@@ -5334,18 +5779,11 @@ body.custom-background {
 	}
 
       /* FOOTER */
-	footer {
+	.container .company-details {
 		padding-top: 40px;
+		width: 33%;
 	}
-	.company-details {
-		padding-top: 0;
-		padding-bottom: 33px;
-	}
-	.copyright {
-		width: 100%;
-		padding-top: 33px;
-		padding-bottom: 33px;
-	}
+
 }
 
 @media (max-width: 992px) {
@@ -5381,6 +5819,25 @@ body.custom-background {
     .header-content-wrap{
 		padding: 225px 0 150px;
 	}
+	.about-us .big-intro {
+		text-align: center;
+	}
+	.company-details {
+		padding-top: 0;
+		padding-bottom: 33px;
+	}
+	.container .company-details:first-child {
+		padding-top: 40px;
+	}
+	.copyright {
+		width: 100%;
+		padding-top: 33px;
+		padding-bottom: 33px;
+	}
+	.container .company-details {
+		width: 100%;
+	}
+
 
 }
 @media (max-width: 767px) {
@@ -5550,9 +6007,6 @@ body.custom-background {
 	}
 
       /* FOOTER */
-	footer {
-		padding-top: 40px;
-	}
 	.company-details {
 		padding-top: 0;
 		padding-bottom: 33px;
@@ -5680,4 +6134,195 @@ body.custom-background {
 .zerif-copyright-box {
 	width: 100%;
     color: #666;
+}
+
+
+
+/* print */
+@media print {
+
+	body {
+		font-size: 11.25pt;
+	}
+	a:link:after, 
+	a:visited:after {
+    	content: "";
+	}
+	header.header {
+	    min-height: 0 !important;
+	}
+	#main-nav {
+    	position: relative;
+	}
+	.header-content-wrap {
+		padding: 30px 0 15px;
+	}
+
+	.buttons {
+		text-align: center;
+	    margin-top: 0px;
+	    margin-bottom: 0;
+	}
+	.focus, 
+	.works, 
+	.about-us, 
+	.features, 
+	.packages, 
+	.products, 
+	.testimonial, 
+	.contact-us {
+		padding-top: 15px;
+	}
+	.focus {
+		padding-bottom: 0;
+	}
+	.focus .row .focus-box,
+	.zerif_about_us_center,
+	.zerif-rtl-skills .skills,
+	#testimonials > .container > .row,
+	.zerif-rtl-contact-name,
+	.zerif-rtl-contact-email,
+	.zerif-rtl-contact-subject,
+	#contact > .container > .row .col-lg-12.col-sm-12,
+	.purchase-now > .container > .row .col-md-9,
+	.purchase-now > .container > .row .col-md-3,
+	.separator-one > .color-overlay .container.text,
+	.separator-one > .color-overlay > div {
+	    -webkit-transform: translatex(0px) !important;
+	    -moz-transform: translatex(0px) !important;
+	    -ms-transform: translatex(0px) !important;
+	    transform: translatex(0px) !important;
+	    opacity: 1 !important;
+	}
+	.focus .row .focus-box {
+	    width: 23% !important;
+	    margin-right: 0;
+	    margin-left: 0;
+	    padding-left: 0;
+	    padding: 0 1.5%;
+	    margin-bottom: 0;
+	}
+	.about-us {
+		padding-bottom: 0;
+	}
+	.about-us .column {
+	    margin-bottom: 0;
+	    width: 100%;
+	    float: left;
+	    margin-right: 0;
+	    margin-left: 0;
+	    padding-left: 0;
+	    margin-bottom: 0;
+	}
+	.about-us .big-intro {
+	    margin-top: 0;
+	    text-align: center;
+	}
+	.zerif-rtl-big-title, 
+	.zerif-rtl-skills,
+	.zerif-rtl-skills .skills {
+		width: 100%;
+	}
+	.zerif-rtl-skills .skills li.skill {
+	    display: inline-block;
+	    clear: none;
+		float: left;
+		width: 25%;
+		margin-bottom: 0;
+	}
+	.about-us p {
+		text-align: center;
+	}
+	.our-team {
+	    padding-top: 30px;
+        padding-bottom: 0;
+	}
+	.our-team .row {
+	    -webkit-transform: translatex(0px) !important;
+	    -moz-transform: translatex(0px) !important;
+	    -ms-transform: translatex(0px) !important;
+	    transform: translatex(0px) !important;
+	    opacity: 1 !important;
+	}
+	.our-team .col-lg-3.col-sm-3 {
+	    width: 23% !important;
+	    margin-right: 0;
+	    margin-left: 0;
+	    padding-left: 0;
+	    padding: 0 1.5%;
+	}
+	.team-member .profile-pic {
+	    width: 100%;
+	    height: auto;
+	}
+	#client-feedbacks .feedback-box {
+	    width: 30%;
+	    padding: 0;
+	    margin: 1.5%;
+	}
+	.feedback-box .quote {
+		display: none;
+	}
+	.feedback-box .client-info {
+	    margin-left: 0;
+	}
+	.section-header {
+	    padding-bottom: 15px;
+	}
+	.testimonial {
+	    padding-bottom: 0;
+	}
+	.feedback-box .client {
+	    margin-top: 0;
+	}
+	.contact-us {
+	    padding-bottom: 0;
+	}
+	.contact-us .input-box, 
+	textarea {
+	    border: 1px solid #000 !important;
+	    box-shadow: none;
+	}
+	.footer-box {
+	    width: 23% !important;
+	    margin-right: 0;
+	    margin-left: 0;
+	    padding-left: 0;
+	    padding: 0 1.5%;
+	}
+	.latestnews-box {
+	    width: 50%;
+	    padding-left: 2%;
+	    padding-right: 2%;
+	    padding: 0;
+	    margin: 0;
+	    float: left;
+	}
+	#carousel-homepage-latestnews .item {
+		height: auto !important;
+	}
+	.company-details {
+	    width: 33% !important;
+	    margin-right: 0;
+	    margin-left: 0;
+	    padding-left: 0;
+	    padding: 0 1.5%;
+	    float: left;
+	}
+	.copyright {
+		width: 100%;
+	}
+	.separator-one,
+	.purchase-now {
+    	padding: 15px 0 15px 0;
+	}
+	.latest-news {
+		padding-bottom: 15px;
+		padding-top: 15px;
+	}
+	/* inner page */
+	.content-left-wrap {
+		padding-top: 0;
+	}
+
 }

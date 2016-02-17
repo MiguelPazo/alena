@@ -1,5 +1,115 @@
 
 
+### 1.8.3.4 - 22/01/2016
+
+ Changes: 
+
+
+ * Fixed #276 WP MegaMenu compatible
+ * Fixed #286 Center testimonial setion
+ * Fixed #277 Small issue with search submit in chrome mobile
+ * Fixed #291 Footer messed up when one option is missing
+ * Fixed #289 Syntax error in smooth scroll function
+ * Fixed #287, more tag in latest news section and blog
+
+
+### 1.8.3.3 - 14/01/2016
+
+ Changes: 
+
+
+ * #279, fixed escaping errors from 1.8.3.2 version
+
+
+### 1.8.3.2 - 07/01/2016
+
+ Changes: 
+
+
+ * Escaping.
+ * I added wp_kses_post() function instead esc_html.
+ * Fixed #274 Broken footer
+ * About us section escaping fixed.
+ * Merge pull request #268 from robciucioan/development
+
+Escaping.
+ * Added an option for instagram link in footer
+ * #273 Transport option in customize for live preview changes
+ * #272, Improved user interaction in Customize, by using better descriptions and names
+
+
+### 1.8.3.1 - 14/12/2015
+
+ Changes: 
+
+
+ * Fixed #259, underline selected category item in menu
+
+
+### 1.8.3.0 - 27/11/2015
+
+ Changes: 
+
+
+ * git status! EDD style
+ * Fixed #191 Printing style
+ * Fixed #191 Printing style
+
+
+### 1.8.2.9 - 19/11/2015
+
+ Changes: 
+
+
+ * Menu levels issue
+ * Fixed #237, page templates for static page
+
+
+### 1.8.2.8 - 11/11/2015
+
+ Changes: 
+
+
+ * fixed backward compatibility for wp_title()
+
+
+### 1.8.2.7 - 11/11/2015
+
+ Changes: 
+
+
+ * Merge pull request #1 from Codeinwp/development
+
+Development
+ * Fixes issue with Open New Window in Our Team
+
+Checks if there's a value. Fixes:
+https://github.com/Codeinwp/zerif-lite/issues/241
+ * Merge pull request #242 from HardeepAsrani/development
+
+ Fixes issue with Open New Window in Our Team
+ * Fixed #244 Variable product label not visible
+ * Fixed #159 Content too close to headline
+ * Fixed #243 Problem with underlined large title on Firefox
+ * Fixed #247 Background image on mobile
+
+
+### 1.8.2.6 - 27/10/2015
+
+ Changes: 
+
+
+ * Fixed #229, recommend Revive Old Post
+ * Polish translations
+ * Create wpglobus-config.json
+
+Configuration file for multilingual Customizer with WPGlobus.
+See http://www.wpglobus.com/documentation/how-to-translate-strings-in-wordpress-customizer/
+ * Merge pull request #233 from tivnet/patch-1
+
+Create wpglobus-config.json
+
+
 ### 1.8.2.5 - 20/10/2015
 
  Changes: 

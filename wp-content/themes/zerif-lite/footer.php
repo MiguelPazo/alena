@@ -10,6 +10,28 @@
 
 <footer id="footer" role="contentinfo">
 
+<?php 
+	if(is_active_sidebar( 'zerif-sidebar-footer' ) || is_active_sidebar( 'zerif-sidebar-footer-2' ) || is_active_sidebar( 'zerif-sidebar-footer-3' )):
+		echo '<div class="footer-widget-wrap"><div class="container">';
+		if(is_active_sidebar( 'zerif-sidebar-footer' )):
+			echo '<div class="footer-widget col-xs-12 col-sm-4">';
+			dynamic_sidebar( 'zerif-sidebar-footer' );
+			echo '</div>';
+		endif;
+		if(is_active_sidebar( 'zerif-sidebar-footer-2' )):
+			echo '<div class="footer-widget col-xs-12 col-sm-4">';
+			dynamic_sidebar( 'zerif-sidebar-footer-2' );
+			echo '</div>';
+		endif;
+		if(is_active_sidebar( 'zerif-sidebar-footer-3' )):
+			echo '<div class="footer-widget col-xs-12 col-sm-4">';
+			dynamic_sidebar( 'zerif-sidebar-footer-3' );
+			echo '</div>';
+		endif;
+		echo '</div></div>';
+	endif;
+?>
+
 <div class="container">
 
 	<?php
@@ -28,6 +50,7 @@
 		$zerif_socials_linkedin = get_theme_mod('zerif_socials_linkedin','#');
 		$zerif_socials_behance = get_theme_mod('zerif_socials_behance','#');
 		$zerif_socials_dribbble = get_theme_mod('zerif_socials_dribbble','#');
+		$zerif_socials_instagram = get_theme_mod('zerif_socials_instagram');
 		
 		$zerif_accessibility = get_theme_mod('zerif_accessibility');
 		$zerif_copyright = get_theme_mod('zerif_copyright');
@@ -43,8 +66,8 @@
 		if(!empty($zerif_phone) || !empty($zerif_phone_icon)):
 			$footer_sections++;
 		endif;
-		if(!empty($zerif_socials_facebook) || !empty($zerif_socials_twitter) || !empty($zerif_socials_linkedin) || !empty($zerif_socials_behance) || !empty($zerif_socials_dribbble) || 
-		!empty($zerif_copyright)):
+		if( !empty($zerif_socials_facebook) || !empty($zerif_socials_twitter) || !empty($zerif_socials_linkedin) || !empty($zerif_socials_behance) || !empty($zerif_socials_dribbble) || 
+		!empty($zerif_copyright) || !empty($zerif_socials_instagram) ):
 			$footer_sections++;
 		endif;
 		
@@ -60,46 +83,76 @@
 			$footer_class = 'col-md-3';
 		endif;
 		
-		/* COMPANY ADDRESS */
-		if( !empty($zerif_address) ):
-			echo '<div class="'.$footer_class.' company-details">';
-				echo '<div class="icon-top red-text">';
-					if( !empty($zerif_address_icon) ) echo '<img src="'.esc_url($zerif_address_icon).'" alt="" />';
-				echo '</div>';
-				echo $zerif_address;
-			echo '</div>';
-		endif;
-		
-		/* COMPANY EMAIL */
+		global $wp_customize;
 		
 		
-		if( !empty($zerif_email) ):
-			echo '<div class="'.$footer_class.' company-details">';
-				echo '<div class="icon-top green-text">';
+		if( !empty($footer_class) ) {
+			
+			/* COMPANY ADDRESS */
+			if( !empty($zerif_address_icon) || !empty($zerif_address) ) { 
+				echo '<div class="'.$footer_class.' company-details">';
 					
-					if( !empty($zerif_email_icon) ) echo '<img src="'.esc_url($zerif_email_icon).'" alt="" />';
+					if( !empty($zerif_address_icon) ) { 
+						echo '<div class="icon-top red-text">';
+							 echo '<img src="'.esc_url($zerif_address_icon).'" alt="" />';
+						echo '</div>';
+					}
+					
+					if( !empty($zerif_address) ) {
+						echo '<div class="zerif-footer-address">';
+							echo wp_kses_post( $zerif_address );
+						echo '</div>';
+					} else if( isset( $wp_customize ) ) {
+						echo '<div class="zerif-footer-address zerif_hidden_if_not_customizer"></div>';
+					}
+					
 				echo '</div>';
-				echo $zerif_email;
-			echo '</div>';
-		endif;
-		
-		/* COMPANY PHONE NUMBER */
-		
-		
-		if( !empty($zerif_phone) ):
-			echo '<div class="'.$footer_class.' company-details">';
-				echo '<div class="icon-top blue-text">';
-					if( !empty($zerif_phone_icon) ) echo '<img src="'.esc_url($zerif_phone_icon).'" alt="" />';
+			}
+			
+			/* COMPANY EMAIL */
+			if( !empty($zerif_email_icon) || !empty($zerif_email) ) {
+				echo '<div class="'.$footer_class.' company-details">';
+				
+					if( !empty($zerif_email_icon) ) {
+						echo '<div class="icon-top green-text">';
+							echo '<img src="'.esc_url($zerif_email_icon).'" alt="" />';
+						echo '</div>';
+					}
+					if( !empty($zerif_email) ) {
+						echo '<div class="zerif-footer-email">';	
+							echo wp_kses_post( $zerif_email );
+						echo '</div>';
+					} else if( isset( $wp_customize ) ) {
+						echo '<div class="zerif-footer-email zerif_hidden_if_not_customizer"></div>';
+					}	
+				
 				echo '</div>';
-				echo $zerif_phone;
-			echo '</div>';
-		endif;
+			}
+			
+			/* COMPANY PHONE NUMBER */
+			if( !empty($zerif_phone_icon) || !empty($zerif_phone) ) {
+				echo '<div class="'.$footer_class.' company-details">';
+					if( !empty($zerif_phone_icon) ) {
+						echo '<div class="icon-top blue-text">';
+							echo '<img src="'.esc_url($zerif_phone_icon).'" alt="" />';
+						echo '</div>';
+					}
+					if( !empty($zerif_phone) ) {
+						echo '<div class="zerif-footer-phone">';
+							echo wp_kses_post( $zerif_phone );
+						echo '</div>';	
+					} else if( isset( $wp_customize ) ) {
+						echo '<div class="zerif-footer-phone zerif_hidden_if_not_customizer"></div>';
+					}		
+				echo '</div>';
+			}
+		}
 		
 		// open link in a new tab when checkbox "accessibility" is not ticked
 		$attribut_new_tab = (isset($zerif_accessibility) && ($zerif_accessibility != 1) ? ' target="_blank"' : '' );
 		
 		if( !empty($zerif_socials_facebook) || !empty($zerif_socials_twitter) || !empty($zerif_socials_linkedin) || !empty($zerif_socials_behance) || !empty($zerif_socials_dribbble) || 
-		!empty($zerif_copyright)):
+		!empty($zerif_copyright) || !empty($zerif_socials_instagram) ):
 		
 					echo '<div class="'.$footer_class.' copyright">';
 					if(!empty($zerif_socials_facebook) || !empty($zerif_socials_twitter) || !empty($zerif_socials_linkedin) || !empty($zerif_socials_behance) || !empty($zerif_socials_dribbble)):
@@ -125,12 +178,17 @@
 						if( !empty($zerif_socials_dribbble) ):
 							echo '<li><a'.$attribut_new_tab.' href="'.esc_url($zerif_socials_dribbble).'"><i class="fa fa-dribbble"></i></a></li>';
 						endif;
+						/* instagram */
+						if( !empty($zerif_socials_instagram) ):
+							echo '<li><a'.$attribut_new_tab.' href="'.esc_url($zerif_socials_instagram).'"><i class="fa fa-instagram"></i></a></li>';
+						endif;
 						echo '</ul>';
 					endif;	
 			
-			
 					if( !empty($zerif_copyright) ):
-						echo esc_attr($zerif_copyright);
+						echo '<p id="zerif-copyright">'.wp_kses_post($zerif_copyright).'</p>';
+					elseif( isset( $wp_customize ) ):
+						echo '<p id="zerif-copyright" class="zerif_hidden_if_not_customizer"></p>';
 					endif;
 					
 					echo '<div class="zerif-copyright-box"><a class="zerif-copyright" href="http://themeisle.com/themes/zerif-lite/"'.$attribut_new_tab.' rel="nofollow">Zerif Lite </a>'.__('powered by','zerif-lite').'<a class="zerif-copyright" href="http://wordpress.org/"'.$attribut_new_tab.' rel="nofollow"> WordPress</a></div>';
@@ -143,6 +201,11 @@
 </div> <!-- / END CONTAINER -->
 
 </footer> <!-- / END FOOOTER  -->
+
+
+	</div><!-- mobile-bg-fix-whole-site -->
+</div><!-- .mobile-bg-fix-wrap -->
+
 
 <?php wp_footer(); ?>
 
